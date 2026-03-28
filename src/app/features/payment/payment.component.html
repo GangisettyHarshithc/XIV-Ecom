@@ -1,0 +1,103 @@
+<div class="kinetic-payment">
+  
+  <aside class="payment-visual">
+    <div class="visual-content">
+      <div class="logo-stack">
+        <span class="logo-main">XIV</span>
+        <span class="logo-sub">SECURE_PAYMENT_GATEWAY</span>
+      </div>
+      <div class="amount-display">
+        <span class="label">TOTAL_DUE</span>
+        <h1 class="total-big">{{ totalAmount | currency }}</h1>
+      </div>
+    </div>
+  </aside>
+
+  <main class="payment-form-area">
+    <div class="form-container">
+      
+      <header class="form-header">
+        <button type="button" class="back-btn" routerLink="/checkout">← BACK</button>
+        <div class="security-status">[ ENCRYPTION: ACTIVE ]</div>
+      </header>
+
+      <section class="method-grid">
+        <button type="button" class="method-tile" 
+                [class.active]="selectedMethod === 'card'" 
+                (click)="selectMethod('card')">
+          <span class="tile-index">01</span>
+          <span class="tile-label">CREDIT_CARD</span>
+        </button>
+        
+        <button type="button" class="method-tile" 
+                [class.active]="selectedMethod === 'apple'" 
+                (click)="selectMethod('apple')">
+          <span class="tile-index">02</span>
+          <span class="tile-label">APPLE_PAY</span>
+        </button>
+
+        <button type="button" class="method-tile" 
+                [class.active]="selectedMethod === 'paypal'" 
+                (click)="selectMethod('paypal')">
+          <span class="tile-index">03</span>
+          <span class="tile-label">PAYPAL</span>
+        </button>
+      </section>
+
+      <form [formGroup]="paymentForm" class="actual-form">
+        
+        <div class="form-node" *ngIf="selectedMethod === 'card'">
+          <div class="input-group">
+            <label>CARD_NUMBER</label>
+            <input type="text" formControlName="cardNumber" placeholder="0000 0000 0000 0000">
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label>EXPIRY</label>
+              <input type="text" formControlName="expiry" placeholder="MM/YY">
+            </div>
+            <div class="input-group">
+              <label>CVC</label>
+              <input type="text" formControlName="cvc" placeholder="***">
+            </div>
+          </div>
+          <div class="input-group">
+            <label>HOLDER_NAME</label>
+            <input type="text" formControlName="nameOnCard" placeholder="FULL NAME">
+          </div>
+        </div>
+
+        <div class="form-node credential-node" *ngIf="selectedMethod === 'apple'">
+          <div class="input-group">
+            <label>APPLE_PAY_IDENTIFIER</label>
+            <div class="input-wrapper">
+              <span class="prefix">ID:</span>
+              <input type="text" formControlName="applePayId" placeholder="USER@ICLOUD.COM">
+            </div>
+            <small class="sys-note">// VERIFYING BIOMETRIC LINK...</small>
+          </div>
+        </div>
+
+        <div class="form-node credential-node" *ngIf="selectedMethod === 'paypal'">
+          <div class="input-group">
+            <label>PAYPAL_ACCESS_CODE</label>
+            <div class="input-wrapper">
+              <span class="prefix">CODE:</span>
+              <input type="password" formControlName="paypalCode" placeholder="••••••••">
+            </div>
+            <small class="sys-note">// AWAITING TOKEN HANDSHAKE...</small>
+          </div>
+        </div>
+
+      </form>
+
+      <div class="action-footer">
+        <button type="button" class="pay-button" (click)="processPayment()" [disabled]="isProcessing">
+          <span class="pay-text">{{ isProcessing ? 'SYSTEM_PROCESSING...' : 'CONFIRM_PAYMENT' }}</span>
+          <span class="pay-arrow">→</span>
+        </button>
+      </div>
+
+    </div>
+  </main>
+</div>

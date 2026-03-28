@@ -1,0 +1,43 @@
+<article class="tactical-card" (click)="onCardClick()">
+  
+  <header class="card-sys-header">
+    <span class="sys-id">ITEM_REF // {{ product.name.substring(0, 3) | uppercase }}-{{ product.id || '00' }}</span>
+    <span class="status-dot" [class.offline]="!product.inStock"></span>
+  </header>
+
+  <div class="image-viewport">
+    <div class="crosshair-overlay"></div>
+    <img *ngIf="product.image" [src]="product.image" [alt]="product.name" class="feed-image" />
+    
+    <div class="hover-glitch">
+      <span>[ INIT_INSPECTION ]</span>
+    </div>
+  </div>
+
+  <div class="card-data">
+    <div class="meta-row">
+      <h3 class="item-designation">{{ product.name | uppercase }}</h3>
+      <span class="item-value">USD {{ product.price | number:'1.2-2' }}</span>
+    </div>
+    
+    <div class="action-matrix">
+      <button 
+        *ngIf="product.inStock; else outOfStock"
+        class="brutalist-btn btn-execute"
+        (click)="onBtnClick($event)">
+        <span class="btn-text">ACQUIRE</span>
+        <span class="btn-icon">+</span>
+      </button>
+
+      <ng-template #outOfStock>
+        <button 
+          class="brutalist-btn btn-notify"
+          (click)="onNotifyClick($event)">
+          <span class="btn-text">SYS_NOTIFY</span>
+          <span class="btn-icon">!</span>
+        </button>
+      </ng-template>
+    </div>
+  </div>
+
+</article>

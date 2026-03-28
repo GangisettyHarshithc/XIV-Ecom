@@ -1,0 +1,68 @@
+<div class="noise-overlay"></div>
+
+<div class="checkout-page abstract-theme">
+  <div class="checkout__container">
+    
+    <div class="title-wrapper">
+      <h1 class="page-title outline-text">CHECHOUT</h1>
+      <h2 class="sub-title">[ ENCRYPTED // TRANSFER ]</h2>
+    </div>
+
+    <div class="checkout__layout">
+      
+      <div class="checkout__main-flow">
+
+        <section class="checkout__section terminal-block">
+          <div class="section-header">
+            <h2 class="terminal-heading">01 // CONTACT_DATA</h2>
+            <span class="pulse-dot"></span>
+          </div>
+          
+          <div class="form-wrapper">
+            <app-address-form
+              [formType]="'contact'"
+              (submit)="onContactInfoSubmit($event)"
+            ></app-address-form>
+          </div>
+        </section>
+
+        <section class="checkout__section terminal-block">
+          <div class="section-header">
+            <h2 class="terminal-heading">02 // ADDRESS</h2>
+          </div>
+          
+          <div class="form-wrapper">
+            <app-address-form
+              [formType]="'address'"
+              (submit)="onShippingAddressSubmit($event)"
+            ></app-address-form>
+          </div>
+        </section>
+
+        <section class="checkout__section terminal-block payment-section">
+          <div class="section-header">
+            <h2 class="terminal-heading">03 // PAYMENT</h2>
+            <span class="lock-icon">[ LOCKED ]</span>
+          </div>
+          
+          <div class="payment-cli">
+            <div class="cli-header">
+              <span>SECURE_CONNECTION_ESTABLISHED</span>
+              <span>256-BIT_AES</span>
+            </div>
+            <div class="cli-body">
+              <p>> PAYMENT_IS_VERY_SECURE</p>
+              <p class="blink">_</p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="brutalist-btn execute-btn"
+            (click)="onCompleteCheckout()"
+          >
+            PAY  {{ total | currency:'USD':'symbol':'1.2-2' }}
+          </button>
+        </section>
+
+      </div>

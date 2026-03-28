@@ -1,0 +1,172 @@
+/* ==========================================================================
+   THE TACTICAL SUMMARY (Ledger Terminal)
+   ========================================================================== */
+.tactical-summary {
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  background: #ffffff;
+  /* Note: Outer borders and shadow are handled by the parent's .terminal-block class! */
+}
+
+/* --- Terminal Header --- */
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #000000;
+  padding-bottom: 1rem;
+}
+
+.sys-title {
+  font-family: monospace;
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #000000;
+  margin: 0;
+}
+
+/* The Active Terminal Blinker */
+.pulse-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #ff00c1; /* Cyber Magenta */
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.2; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* --- The Ledger Rows --- */
+.calc-ledger {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ledger-row {
+  display: flex;
+  align-items: flex-end; /* Aligns text to the bottom of the dots */
+  font-family: monospace;
+  font-size: 1.1rem;
+  
+  /* Interaction: Highlight row on hover to feel like an active terminal */
+  transition: background 0.2s;
+  padding: 0.25rem 0;
+  
+  // &:hover {
+  //   background: #00fff9; /* Snaps to Cyan */
+  // }
+
+  .label {
+    color: #555555;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* THE DOT-MATRIX TRICK: This auto-fills the space with dots! */
+  .dots {
+    flex-grow: 1;
+    border-bottom: 2px dotted #a1a1aa;
+    margin: 0 10px;
+    position: relative;
+    top: -4px; /* Adjusts dots to middle-align */
+  }
+
+  .value {
+    font-weight: 800;
+    color: #000000;
+    white-space: nowrap;
+  }
+}
+
+.heavy-divider {
+  height: 4px;
+  background-color: #000000;
+  margin: 0.5rem 0;
+}
+
+/* --- The Gross Total --- */
+.total-row {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+
+  .label {
+    color: #000000;
+    font-weight: 900;
+  }
+
+  .dots {
+    border-bottom: 2px solid #000000; /* Solid line for the total */
+  }
+
+  .value.inverted {
+    background: #000000;
+    color: #ffffff;
+    padding: 4px 10px;
+    font-size: 1.75rem;
+    box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.2);
+  }
+}
+
+/* --- Execution Actions --- */
+.summary-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Overriding PrimeNG to match our global brutalist buttons */
+.execute-btn {
+  width: 100%;
+  font-family: monospace;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 1.5rem;
+  border: 2px solid #000000;
+  background: #ffffff;
+  color: #000000;
+  cursor: crosshair;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 6px 6px 0px 0px #000000;
+  text-align: center;
+
+  &:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px 0px 0px #000000; 
+    background: #ff00c1; /* Snaps to Magenta on execute */
+    color: #ffffff;
+    border-color: #ff00c1;
+  }
+}
+
+.abort-link {
+  text-align: center;
+  font-family: monospace;
+  color: #71717a;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  .arrow { font-weight: 900; transition: transform 0.2s; }
+
+  &:hover {
+    color: #000000;
+    
+    .arrow { transform: translateX(-5px); }
+  }
+}

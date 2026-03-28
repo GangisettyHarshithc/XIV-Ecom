@@ -1,0 +1,50 @@
+<div class="noise-overlay"></div>
+
+<div class="auth-page abstract-theme">
+  <div class="auth-container kinetic-landscape">
+    
+    <aside class="auth-status-panel">
+      <div class="scanner-line"></div>
+      <div class="panel-content">
+        <div class="status-code">[ AUTH_REQUIRED ]</div>
+        <h1 class="outline-text">LOGIN</h1>
+        <p class="sys-note">NODE_XIV // ID_VERIFY</p>
+      </div>
+    </aside>
+
+    <main class="auth-input-panel">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="tactical-grid-form">
+        
+        <div class="form-error terminal-alert" *ngIf="errorMessage">
+          {{ errorMessage | uppercase }}
+        </div>
+
+        <div class="input-row">
+          <div class="input-node">
+            <label>USER_ID</label>
+            <input type="email" formControlName="email" class="tactical-input" placeholder="EMAIL_ADDRESS">
+          </div>
+          <div class="input-node">
+            <label>SEC_KEY</label>
+            <input type="password" formControlName="password" class="tactical-input" placeholder="PASSWORD">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-execute" [disabled]="isSubmitting">
+          <span class="btn-content">{{ isSubmitting ? 'INITIALIZING...' : 'EXECUTE_LOGIN_SEQUENCE →' }}</span>
+          <div class="btn-progress" [style.width.%]="isSubmitting ? 100 : 0"></div>
+        </button>
+
+      </form>
+    </main>
+
+    <aside class="auth-nav-panel">
+      <div class="nav-content">
+        <a href="#" class="nav-link">RECOVER_KEY</a>
+        <a routerLink="/signup" class="nav-link highlight">CREATE_IDENTITY</a>
+      </div>
+      <div class="barcode-decor"></div>
+    </aside>
+
+  </div>
+</div>

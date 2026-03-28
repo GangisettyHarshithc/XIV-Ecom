@@ -1,0 +1,311 @@
+/* =========================================
+   GLOBAL NEO-BRUTALIST SETTINGS
+   ========================================= */
+.abstract-theme {
+  /* Concrete base to contrast with the dark header/footer */
+  background-color: #e5e5e5; 
+  /* Fallback padding just in case your global styles don't catch it */
+  padding: 150px 4vw 10vh 4vw; 
+  min-height: 100vh;
+  color: #000000;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  position: relative;
+}
+
+/* Reusable Utility Classes */
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 2px #000000;
+}
+
+/* Static Noise Overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+}
+
+/* =========================================
+   1. MASSIVE TYPOGRAPHY
+   ========================================= */
+.orders-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.title-wrapper {
+  margin-bottom: 8vh;
+}
+
+.page-title {
+  font-size: clamp(5rem, 12vw, 10rem);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  margin: 0;
+  /* The Photocopy Text Shadow */
+  text-shadow: 10px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.sub-title {
+  font-family: monospace;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  letter-spacing: 4px;
+  color: #000000;
+  margin-top: -10px;
+  background: #ffffff;
+  display: inline-block;
+  padding: 5px 15px;
+  border: 2px solid #000;
+}
+
+/* =========================================
+   2. TERMINAL BLOCKS (The Data Containers)
+   ========================================= */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem; /* Massive spacing between elements */
+}
+
+/* The Base Physical Block */
+.terminal-block {
+  background: #ffffff;
+  border: 3px solid #000000;
+  border-radius: 0; /* DESTROY THE ROUNDED CORNERS */
+  
+  /* THE RAW BRUTALIST SHADOW */
+  box-shadow: 12px 12px 0px 0px #000000;
+  
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s;
+
+  /* Hover Interaction: The block physically lifts up */
+  &:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 16px 16px 0px 0px #00fff9; /* Snaps to Cyan */
+    
+    /* Bring color back to the images when hovering the card */
+    .img-mask img { filter: grayscale(0%) contrast(100%); }
+  }
+}
+
+/* =========================================
+   3. EMPTY STATE (System Error Vibe)
+   ========================================= */
+.empty-state {
+  text-align: center;
+  padding: 10vh 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+
+  .glitch-icon {
+    font-size: 6rem;
+    font-weight: 900;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 4px #000000;
+    animation: jitter 0.2s infinite alternate;
+  }
+
+  .terminal-text {
+    font-family: monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    background: #000;
+    color: #fff;
+    padding: 5px 15px;
+  }
+
+  .terminal-sub {
+    font-family: monospace;
+    color: #555;
+    letter-spacing: 2px;
+  }
+}
+
+@keyframes jitter {
+  0% { transform: skewX(-5deg); }
+  100% { transform: skewX(5deg); }
+}
+
+/* =========================================
+   4. THE ORDER DOSSIER
+   ========================================= */
+.order-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative Barcode Tape */
+.decor-barcode {
+  height: 15px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    #000,
+    #000 2px,
+    transparent 2px,
+    transparent 6px,
+    #000 6px,
+    #000 10px,
+    transparent 10px,
+    transparent 12px
+  );
+  border-bottom: 3px solid #000;
+}
+
+.order-header {
+  padding: 2rem;
+  border-bottom: 3px solid #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: monospace;
+
+  .header-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .order-id { font-weight: 800; font-size: 1.25rem; color: #000; }
+  .order-date { font-size: 0.9rem; color: #555; }
+}
+
+/* The Status Output */
+.header-status {
+  font-weight: 700;
+  font-size: 1rem;
+  
+  .status-bracket { color: #a1a1aa; margin: 0 4px; }
+  
+  /* Hard-coded status colors based on terminal outputs */
+  .status-raw.processing { color: #d97706; }
+  .status-raw.shipped { color: #4338ca; }
+  .status-raw.delivered { color: #15803d; background: #dcfce7; padding: 2px 6px; }
+}
+
+/* =========================================
+   5. ITEM FRAGMENTS
+   ========================================= */
+.order-items {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.mini-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  .img-mask {
+    width: 80px; height: 80px; 
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0px 0px #000;
+    background: #000;
+    overflow: hidden;
+
+    img { 
+      width: 100%; height: 100%; object-fit: cover; 
+      /* Grim high-fashion grayscale by default */
+      filter: grayscale(100%) contrast(120%); 
+      transition: filter 0.4s ease;
+    }
+  }
+
+  .item-details { display: flex; flex-direction: column; gap: 0.5rem; }
+  
+  .item-name { 
+    font-size: 1rem; 
+    font-weight: 800; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+  }
+  
+  .item-qty { 
+    font-family: monospace;
+    font-size: 0.85rem; 
+    color: #555; 
+  }
+}
+
+.more-items {
+  display: flex;
+  align-items: center;
+  font-weight: 900;
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
+/* =========================================
+   6. BRUTALIST FOOTER & BUTTONS
+   ========================================= */
+.order-footer {
+  padding: 2rem;
+  border-top: 3px solid #000;
+  background: #f4f4f5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-total {
+  font-size: 1.5rem;
+  font-family: monospace;
+  font-weight: 800;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+
+  .total-label { color: #71717a; font-size: 1rem; }
+  .total-value { background: #000; color: #fff; padding: 5px 10px; }
+}
+
+/* The Brutalist Buttons */
+.brutalist-btn {
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 1rem 2rem;
+  border: 2px solid #000;
+  background: #fff;
+  color: #000;
+  cursor: crosshair;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 4px 4px 0px 0px #000;
+
+  &.primary {
+    background: #000;
+    color: #fff;
+  }
+
+  &:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px 0px #000; /* Shadow compresses on click/hover */
+    background: #ff00c1; /* Snaps to Magenta */
+    color: #fff;
+    border-color: #ff00c1;
+  }
+}
+
+/* =========================================
+   MOBILE CHAOS
+   ========================================= */
+@media (max-width: 768px) {
+  .order-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .order-footer { flex-direction: column; align-items: stretch; gap: 1.5rem; }
+  .order-items { grid-template-columns: 1fr; }
+  
+  .total-value { width: 100%; text-align: center; }
+  .brutalist-btn { width: 100%; text-align: center; }
+}

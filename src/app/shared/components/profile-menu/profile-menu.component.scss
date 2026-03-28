@@ -1,0 +1,139 @@
+/* --- The Trigger Button --- */
+.profile-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #09090b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #f4f4f5;
+  }
+}
+
+/* --- PrimeNG Overlay Override --- */
+/* This targets the PrimeNG panel directly to remove default padding */
+/* --- PrimeNG Popover Override --- */
+::ng-deep .premium-profile-panel {
+  /* THE FIX: Changed class name to match the new popover component */
+  .p-popover-content {
+    padding: 0 !important;
+  }
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e4e4e7;
+  width: 240px;
+}
+
+/* --- The Custom Inner Dropdown --- */
+.profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1rem;
+  background: #fafafa;
+
+  .user-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #09090b;
+  }
+
+  .user-email {
+    font-size: 0.85rem;
+    color: #71717a;
+    margin-top: 0.25rem;
+  }
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #e4e4e7;
+  width: 100%;
+}
+
+.dropdown-menu-items {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: #3f3f46;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  i {
+    font-size: 1.1rem;
+    color: #71717a;
+    transition: color 0.2s ease;
+  }
+
+  &:hover {
+    background-color: #f4f4f5;
+    color: #09090b;
+
+    i { color: #09090b; }
+  }
+
+  /* Specific styling for the logout button */
+  &.logout {
+    color: #ef4444;
+    i { color: #ef4444; }
+
+    &:hover {
+      background-color: #fef2f2;
+      color: #dc2626;
+      i { color: #dc2626; }
+    }
+  }
+}
+/* Add this to your existing SCSS file */
+
+.guest-header {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1.25rem;
+  background: #fafafa;
+  text-align: center;
+  border-bottom: 1px solid #e4e4e7;
+
+  .guest-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #09090b;
+  }
+
+  .guest-subtitle {
+    font-size: 0.85rem;
+    color: #71717a;
+    margin-top: 0.25rem;
+  }
+}
+
+.highlight-item {
+  background-color: #fafafa;
+  font-weight: 600;
+  
+  i { color: #09090b; }
+}

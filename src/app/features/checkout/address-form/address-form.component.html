@@ -1,0 +1,105 @@
+<form [formGroup]="form" class="tactical-form" (ngSubmit)="onSubmit()">
+  
+  <ng-container *ngIf="formType === 'contact'">
+    <div class="form-group">
+      <label for="email" class="form-label">[ EMAIL_IDENTIFIER ]</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        placeholder="USER@NETWORK.COM"
+        class="tactical-input"
+        [class.invalid]="form.get('email')?.invalid && form.get('email')?.touched"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="phone" class="form-label">[ COMMS_NODE_ID ]</label>
+      <input
+        id="phone"
+        type="tel"
+        formControlName="phone"
+        placeholder="+00 000 000 0000"
+        class="tactical-input"
+        [class.invalid]="form.get('phone')?.invalid && form.get('phone')?.touched"
+      />
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="formType === 'address'">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="firstName" class="form-label">[ GIVEN_NAME ]</label>
+        <input
+          id="firstName"
+          formControlName="firstName"
+          placeholder="ALPHA"
+          class="tactical-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="lastName" class="form-label">[ SURNAME ]</label>
+        <input
+          id="lastName"
+          formControlName="lastName"
+          placeholder="BRAVO"
+          class="tactical-input"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="addressLine1" class="form-label">[ PRIMARY_LOCATION ]</label>
+      <input
+        id="addressLine1"
+        formControlName="addressLine1"
+        placeholder="STREET_ADDRESS_01"
+        class="tactical-input"
+      />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="city" class="form-label">[ SECTOR_CITY ]</label>
+        <input
+          id="city"
+          formControlName="city"
+          placeholder="CITY_ID"
+          class="tactical-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="state" class="form-label">[ ZONE_STATE ]</label>
+        <div class="select-wrapper">
+          <select id="state" formControlName="state" class="tactical-input select-input">
+            <option value="" disabled selected>SELECT_ZONE</option>
+            <option *ngFor="let state of states" [value]="state.value">{{ state.label | uppercase }}</option>
+          </select>
+          <span class="select-arrow">▼</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="zipCode" class="form-label">[ POSTAL_CODE ]</label>
+        <input
+          id="zipCode"
+          formControlName="zipCode"
+          placeholder="000000"
+          class="tactical-input"
+        />
+      </div>
+    </div>
+  </ng-container>
+
+  <button
+    type="submit"
+    class="btn-tactical-save"
+    [disabled]="form.invalid"
+  >
+    {{ formType === 'contact' ? 'SAVE_CONTACT_LOG' : 'COMMIT_LOCATION_DATA' }}
+  </button>
+</form>

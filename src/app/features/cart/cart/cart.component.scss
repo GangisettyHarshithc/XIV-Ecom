@@ -1,0 +1,221 @@
+/* =========================================
+   GLOBAL NEO-BRUTALIST SETTINGS
+   ========================================= */
+.abstract-theme {
+  background-color: #e5e5e5; /* Concrete base */
+  min-height: 100vh;
+  color: #000000;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  position: relative;
+  /* Clears the industrial header */
+  padding: 150px 4vw 10vh 4vw; 
+}
+
+/* Static Noise Overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+}
+
+/* Reusable Utility Classes */
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 2px #000000;
+}
+
+/* =========================================
+   1. MASSIVE TYPOGRAPHY
+   ========================================= */
+.cart-container {
+  max-width: 1400px; /* Wider footprint for the industrial grid */
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  
+  /* Harsh Snap Animation */
+  animation: snapIn 0.3s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+@keyframes snapIn {
+  0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.title-wrapper {
+  margin-bottom: 8vh;
+}
+
+.page-title {
+  font-size: clamp(5rem, 6vw, 10rem);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  margin: 0;
+  text-shadow: 10px 10px 0px rgba(0, 0, 0, 0.15); /* Photocopy shadow */
+}
+
+.sub-title {
+  font-family: monospace;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  letter-spacing: 4px;
+  color: #000000;
+  margin-top: -10px;
+  background: #ffffff;
+  display: inline-block;
+  padding: 5px 15px;
+  border: 2px solid #000;
+}
+
+/* =========================================
+   2. TERMINAL BLOCKS (Physical Containers)
+   ========================================= */
+.terminal-block {
+  background: #ffffff;
+  border: 3px solid #000000;
+  border-radius: 0; 
+  /* BRUTALIST SHADOW */
+  box-shadow: 12px 12px 0px 0px #000000;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 16px 16px 0px 0px #00fff9; /* Cyber cyan snap */
+  }
+}
+
+/* =========================================
+   3. EMPTY STATE (System Error)
+   ========================================= */
+.empty-state {
+  text-align: center;
+  padding: 10vh 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+
+  .glitch-icon {
+    font-size: 6rem;
+    font-weight: 900;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 4px #000000;
+    animation: jitter 0.2s infinite alternate;
+  }
+
+  .terminal-text {
+    font-family: monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    background: #000;
+    color: #fff;
+    padding: 5px 15px;
+    letter-spacing: 2px;
+  }
+
+  .terminal-sub {
+    font-family: monospace;
+    color: #555;
+    letter-spacing: 2px;
+    font-size: 1rem;
+  }
+}
+
+@keyframes jitter {
+  0% { transform: skewX(-5deg); }
+  100% { transform: skewX(5deg); }
+}
+
+/* Brutalist Button */
+.brutalist-btn {
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 1rem 2rem;
+  border: 2px solid #000;
+  background: #fff;
+  color: #000;
+  cursor: crosshair;
+  transition: all 0.2s;
+  box-shadow: 4px 4px 0px 0px #000;
+
+  &.primary { background: #000; color: #fff; }
+
+  &:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px 0px #000; /* Compresses on hover */
+    background: #ff00c1; /* Magenta snap */
+    color: #fff;
+    border-color: #ff00c1;
+  }
+}
+
+/* =========================================
+   4. TACTICAL GRID LAYOUT
+   ========================================= */
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px; /* Wider summary column for brutalist aesthetic */
+  gap: 4vw; 
+  align-items: start; 
+}
+
+.cart-items-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Decorative Tape above the items list */
+.decor-barcode {
+  height: 20px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    #000,
+    #000 3px,
+    transparent 3px,
+    transparent 8px,
+    #000 8px,
+    #000 14px,
+    transparent 14px,
+    transparent 18px
+  );
+  border-bottom: 3px solid #000;
+  margin-bottom: -3px; /* Overlaps the border of the block below it */
+  position: relative;
+  z-index: 10;
+}
+
+.items-wrapper {
+  padding: 0; /* Let the child items define the inner spacing */
+  overflow: hidden;
+}
+
+/* Sticky Summary Tracker */
+.order-summary-column {
+  position: sticky;
+  top: 130px; /* Perfect spacing below your 90px industrial header */
+}
+
+/* =========================================
+   MOBILE CHAOS
+   ========================================= */
+@media (max-width: 992px) {
+  .abstract-theme { padding: 120px 1.5rem 5vh 1.5rem; }
+  
+  .cart-layout {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  
+  .order-summary-column {
+    position: relative; 
+    top: 0;
+  }
+}

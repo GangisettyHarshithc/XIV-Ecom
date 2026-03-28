@@ -1,0 +1,43 @@
+<div class="noise-overlay"></div>
+
+<div class="cart-page abstract-theme">
+  <div class="cart-container">
+    
+    <div class="title-wrapper">
+      <h1 class="page-title outline-text">BUY UR STUFF</h1>
+      <h2 class="sub-title">[ BEST // TEST ]</h2>
+    </div>
+
+    <div class="empty-state terminal-block" *ngIf="cartItems.length === 0">
+      <div class="glitch-icon">Ø</div>
+      <h2 class="terminal-text">ERR_BASKET_EMPTY</h2>
+      <p class="terminal-sub">NO ASSETS DETECTED IN CURRENT SESSION.</p>
+      <button class="brutalist-btn primary" routerLink="/catalog">INITIALIZE CATALOG</button>
+    </div>
+
+    <div class="cart-layout" *ngIf="cartItems.length > 0">
+      
+      <div class="cart-items-column">
+        <div class="decor-barcode"></div>
+        
+        <div class="items-wrapper terminal-block">
+          <app-cart-item 
+            *ngFor="let currentItem of cartItems" 
+            [item]="currentItem">
+          </app-cart-item>
+        </div>
+      </div>
+
+      <aside class="order-summary-column">
+        <div class="summary-wrapper terminal-block">
+          <app-order-summary 
+            [subtotal]="subtotal" 
+            [shipping]="shipping" 
+            [total]="total">
+          </app-order-summary>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="invisible-backdrop" *ngIf="visible" (click)="toggle()"></div>
+
+<div class="compact-search" [class.show]="visible">
+  
+  <div class="compact-search__input-wrapper">
+    <i class="pi pi-search search-icon"></i>
+    <input
+      #searchInput
+      type="text"
+      [(ngModel)]="searchQuery"
+      placeholder="Search..."
+      (keyup.enter)="onSearch()"
+      class="compact-input"
+    />
+    <p-progressSpinner *ngIf="isLoading" [style]="{ width: '18px', height: '18px' }" strokeWidth="6" fill="transparent" class="spinner-icon"></p-progressSpinner>
+  </div>
+
+  <div *ngIf="searchResults.length > 0" class="compact-search__results">
+    <div *ngFor="let result of searchResults" class="mini-result" (click)="selectResult(result)">
+      <img [src]="result.image" [alt]="result.name" class="mini-img" />
+      <div class="mini-info">
+        <span class="mini-name">{{ result.name }}</span>
+        <span class="mini-price">${{ result.price }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="searchQuery && searchResults.length === 0 && !isLoading" class="compact-search__empty">
+    No results for "{{ searchQuery }}"
+  </div>
+
+</div>

@@ -1,0 +1,43 @@
+<div class="tactical-summary">
+  
+  <div class="summary-header">
+    <h2 class="sys-title">SUMMARY</h2>
+    <span class="pulse-dot"></span>
+  </div>
+
+  <div class="calc-ledger">
+    <div class="ledger-row">
+      <span class="label">COSTING</span>
+      <span class="dots"></span>
+      <span class="value">${{ subtotal | number:'1.2-2' }}</span>
+    </div>
+
+    <div class="ledger-row">
+      <span class="label">DELIVARY</span>
+      <span class="dots"></span>
+      <span class="value">{{ shipping === 0 ? '[ WAIVED ]' : '$' + (shipping | number:'1.2-2') }}</span>
+    </div>
+
+    <div class="heavy-divider"></div>
+
+    <div class="ledger-row total-row">
+      <span class="label">TOTAL-BILL</span>
+      <span class="dots"></span>
+      <span class="value inverted">${{ total | number:'1.2-2' }}</span>
+    </div>
+  </div>
+
+  <div class="summary-actions" *ngIf="showCheckoutButton">
+    
+    <button 
+      class="brutalist-btn execute-btn"
+      (click)="onCheckout()">
+      CHECKOUT
+    </button>
+
+    <a routerLink="/catalog" class="abort-link">
+      <span class="arrow"><</span> WANT TO LOOK FOR MORE
+    </a>
+  </div>
+
+</div>

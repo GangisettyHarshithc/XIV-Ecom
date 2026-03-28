@@ -1,0 +1,16 @@
+<div class="tactical-grid-layout" *ngIf="products.length > 0">
+  <app-product-card 
+    *ngFor="let p of products" 
+    [product]="p"
+    (viewDetails)="viewDetails.emit($event)"
+    (addToCart)="addToCart.emit($event)"
+    (notifyMe)="notifyMe.emit($event)"> 
+  </app-product-card>
+</div>
+
+<div *ngIf="products.length === 0" class="sys-empty-state">
+  <div class="warning-icon">⚠</div>
+  <h3 class="error-code">[ SYS_ERR: ZERO_MATCHES_FOUND ]</h3>
+  <p class="error-detail">> QUERY_PARAMETERS_YIELDED_NO_RESULTS</p>
+  <p class="error-detail">> SUGGESTION: EXECUTE [ PURGE_FILTERS ] TO RESET MATRIX.</p>
+</div>

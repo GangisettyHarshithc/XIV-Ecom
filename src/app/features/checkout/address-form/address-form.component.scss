@@ -1,0 +1,138 @@
+/* =========================================
+   THE TACTICAL FORM ENGINE
+   ========================================= */
+.tactical-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background: transparent;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Monospace Terminal Labels */
+.form-label {
+  font-family: monospace;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #71717a;
+  letter-spacing: 2px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* =========================================
+   THE INDUSTRIAL INPUT BOX
+   ========================================= */
+.tactical-input {
+  width: 100%;
+  padding: 1rem;
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000000;
+  background: #ffffff;
+  
+  /* Hard 2px black border with 90-degree corners */
+  border: 2px solid #000000;
+  border-radius: 0; 
+  
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &::placeholder {
+    color: #d1d1d6;
+    opacity: 0.5;
+  }
+
+  /* The Brutalist Focus: Snaps to Cyan and adds a hard shadow */
+  &:focus {
+    outline: none;
+    border-color: #00fff9; 
+    box-shadow: 6px 6px 0px 0px #000000;
+    transform: translate(-2px, -2px);
+  }
+
+  /* Error state: Snaps to Magenta */
+  &.invalid {
+    border-color: #ff00c1;
+    &:focus { box-shadow: 6px 6px 0px 0px #ff00c1; }
+  }
+}
+
+/* =========================================
+   CUSTOM SELECT OVERRIDE
+   ========================================= */
+.select-wrapper {
+  position: relative;
+  width: 100%;
+
+  .select-input {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: crosshair;
+    padding-right: 3rem;
+  }
+
+  .select-arrow {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 0.8rem;
+    color: #000;
+  }
+}
+
+/* =========================================
+   SUBMIT BUTTON (The Executioner)
+   ========================================= */
+.btn-tactical-save {
+  width: fit-content;
+  padding: 1.25rem 2.5rem;
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+  font-family: monospace;
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  cursor: pointer;
+  
+  /* Initial Hard Shadow */
+  box-shadow: 8px 8px 0px 0px #ff00c1;
+  transition: all 0.15s;
+
+  &:hover:not(:disabled) {
+    background-color: #00fff9; /* Snaps to Cyan on hover */
+    color: #000;
+    transform: translate(2px, 2px);
+    box-shadow: 4px 4px 0px 0px #000;
+  }
+
+  &:active:not(:disabled) {
+    transform: translate(6px, 6px);
+    box-shadow: 0px 0px 0px 0px #000;
+  }
+
+  &:disabled {
+    background: #e5e5e5;
+    color: #a1a1aa;
+    border-color: #d1d1d6;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row { grid-template-columns: 1fr; }
+  .btn-tactical-save { width: 100%; text-align: center; }
+}

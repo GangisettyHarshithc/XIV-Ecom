@@ -1,0 +1,110 @@
+/* ==========================================================================
+   THE GLOBAL APP LOCK
+   ========================================================================== */
+
+/* 1. The Border-Box Fix: Forces padding to pull INWARD, not push OUTWARD. 
+      This instantly kills 99% of accidental horizontal scrolling. */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. The Viewport Lock */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  
+  /* KILLS the left/right dragging completely */
+  overflow-x: hidden; 
+  
+  /* KILLS the top/bottom "rubber-band bounce" on Macs and iPhones */
+  overscroll-behavior: none; 
+  
+  /* Optional: Sets a clean background so no white flashes happen */
+  background-color: #ffffff; 
+  color: #09090b;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}/* ==========================================================================
+   1. DESIGN TOKENS (The Master Palette)
+   ========================================================================== */
+:root {
+  --surface-ground: #fafafa;
+  --surface-card: #ffffff;
+  --text-main: #09090b;       /* Near black, softer on the eyes than pure #000 */
+  --text-muted: #71717a;      /* Elegant zinc gray */
+  --border-color: #e4e4e7;
+  --brand-primary: #09090b;
+  
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   2. GLOBAL RESET & TYPOGRAPHY
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--surface-ground);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   3. PRIMENG COMPONENT OVERRIDES (The "Expensive" Look)
+   ========================================================================== */
+/* Make PrimeNG buttons look like high-end designer buttons */
+.p-button {
+  background: var(--brand-primary) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 0.875rem 1.5rem !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: var(--transition-smooth) !important;
+
+  &:hover {
+    background: #27272a !important; /* Slightly lighter black on hover */
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    background: var(--text-muted) !important;
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* Make PrimeNG input fields minimal */
+.p-inputtext, .p-inputnumber-input {
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 0.75rem 1rem !important;
+  transition: var(--transition-smooth) !important;
+  
+  &:focus {
+    border-color: var(--brand-primary) !important;
+    box-shadow: 0 0 0 1px var(--brand-primary) !important;
+  }
+}
+/* Pushes ALL routed components down to clear the floating industrial HUD */
+router-outlet + * {
+  display: block;
+  padding-top: 130px;
+}

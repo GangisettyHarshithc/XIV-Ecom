@@ -1,0 +1,80 @@
+<div class="noise-overlay"></div>
+
+<div class="auth-page">
+  <div class="kinetic-landscape">
+    
+    <aside class="auth-status-panel">
+      <div class="scanner-line"></div>
+      <div class="panel-content">
+        <span class="status-code">[ REG_REQUIRED ]</span>
+        <h1 class="outline-text">JOIN</h1>
+        <p class="sys-note">NODE_XIV // NEW_IDENTITY</p>
+      </div>
+    </aside>
+
+    <main class="auth-input-panel">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="tactical-grid-form">
+        
+        <div class="input-row">
+          <div class="input-node">
+            <label>GIVEN_NAME</label>
+            <input 
+              type="text" 
+              formControlName="firstName" 
+              class="tactical-input" 
+              placeholder="ALPHA"
+              [class.invalid]="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched"
+            >
+          </div>
+          <div class="input-node">
+            <label>SURNAME</label>
+            <input 
+              type="text" 
+              formControlName="lastName" 
+              class="tactical-input" 
+              placeholder="BRAVO"
+              [class.invalid]="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched"
+            >
+          </div>
+        </div>
+
+        <div class="input-node">
+          <label>USER_IDENTIFIER</label>
+          <input 
+            type="email" 
+            formControlName="email" 
+            class="tactical-input" 
+            placeholder="EMAIL_ADDRESS"
+            [class.invalid]="signupForm.get('email')?.invalid && signupForm.get('email')?.touched"
+          >
+        </div>
+
+        <div class="input-node">
+          <label>SECRET_KEY</label>
+          <input 
+            type="password" 
+            formControlName="password" 
+            class="tactical-input" 
+            placeholder="MIN_6_CHARS"
+            [class.invalid]="signupForm.get('password')?.invalid && signupForm.get('password')?.touched"
+          >
+        </div>
+
+        <button type="submit" class="btn-execute" [disabled]="isSubmitting || signupForm.invalid">
+          <span class="btn-content">{{ isSubmitting ? 'GENERATING...' : 'COMMIT_IDENTITY_SEQUENCE →' }}</span>
+          <div class="btn-progress" [style.width.%]="isSubmitting ? 100 : 0"></div>
+        </button>
+
+      </form>
+    </main>
+
+    <aside class="auth-nav-panel">
+      <div class="nav-content">
+        <span class="nav-label">EXISTING_USER?</span>
+        <a routerLink="/login" class="nav-link">SIGN_IN_NODE</a>
+      </div>
+      <div class="barcode-decor"></div>
+    </aside>
+
+  </div>
+</div>

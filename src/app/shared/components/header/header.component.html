@@ -1,0 +1,33 @@
+<header class="avant-garde-hud">
+  
+  <div class="hud-left">
+    <ng-container *ngFor="let link of navLinks">
+      <a [routerLink]="link.route" class="brutal-link outline-hover" [attr.data-text]="link.label">
+        {{ link.label }}
+      </a>
+    </ng-container>
+  </div>
+
+  <div class="hud-center">
+    <a routerLink="/" class="glitch-logo">
+      <span class="logo-layer">XIV</span>
+      <span class="logo-layer">XIV</span>
+      <span class="logo-layer">XIV</span>
+    </a>
+  </div>
+
+  <div class="hud-right">
+    <button class="brutal-link" (click)="onSearch()">SEARCH</button>
+    
+    <a routerLink="/cart" class="brutal-link">
+      CART <span class="data-bracket">[</span><span class="data-value">{{ cartItemCount < 10 ? '0' + cartItemCount : cartItemCount }}</span><span class="data-bracket">]</span>
+    </a>
+
+    <div class="profile-hijack">
+      <app-profile-menu></app-profile-menu>
+    </div>
+  </div>
+
+</header>
+
+<app-search-modal></app-search-modal>

@@ -1,0 +1,36 @@
+<p-toast position="top-right"></p-toast>
+
+<div class="premium-catalog-container">
+  
+  <header class="catalog-top-bar">
+    <h1 class="page-title">The Collection</h1>
+    <p class="subtitle">Engineered for everyday excellence.</p>
+  </header>
+
+  <div class="catalog-layout">
+    <aside class="sidebar-wrapper">
+      <app-product-filter-sidebar 
+        (filtersChange)="onFiltersChange($event)">
+      </app-product-filter-sidebar>
+    </aside>
+
+    <main class="grid-wrapper">
+      <app-product-grid 
+        *ngIf="filteredProducts && filteredProducts.length > 0; else noProducts"
+        [products]="filteredProducts"
+        (viewDetails)="onViewProduct($event)"
+        (addToCart)="onAddToCart($event)"
+        (notifyMe)="onNotifyMe($event)"> 
+      </app-product-grid>
+
+      <ng-template #noProducts>
+        <div class="no-results-state">
+          <i class="pi pi-search"></i>
+          <h3>No matches found</h3>
+          <p>Try adjusting your filters or price range.</p>
+        </div>
+      </ng-template>
+    </main>
+
+  </div>
+</div>

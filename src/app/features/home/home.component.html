@@ -1,0 +1,83 @@
+<div class="noise-overlay"></div>
+
+<div class="home-page abstract-theme">
+  
+  <section class="hero-section">
+    <div class="hero-bg-text">
+      <div class="marquee-fast">
+        <span>XIV XIV XIV XIV XIV XIV</span>
+      </div>
+      <div class="marquee-fast reverse">
+        <span>LUXURY LUXURY LUXURY</span>
+      </div>
+    </div>
+
+    <div class="hero-portal">
+      <img src="https://images.unsplash.com/photo-1707343843437-caacff5cfa74?q=80&w=1000&auto=format&fit=crop" alt="Abstract Fashion">
+    </div>
+
+    <div class="hero-foreground">
+      <h1 class="hero-title">
+        <span class="offset-left">REDEFINING</span>
+        <br>
+        <span class="offset-right outline-text">FORM &</span>
+        <br>
+        <span class="offset-center">VOID.</span>
+      </h1>
+    </div>
+
+    <div class="spin-badge">
+      <svg viewBox="0 0 100 100">
+        <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent" />
+        <text>
+          <textPath href="#circlePath">SCROLL TO EXPLORE • THE ARCHIVE •</textPath>
+        </text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="philosophy-section">
+    <div class="scattered-container">
+      <p class="scatter-1">CLOTHING</p>
+      <p class="scatter-2">IS NOT</p>
+      <div class="abstract-line"></div>
+      <p class="scatter-3 outline-text">UTILITY.</p>
+      <p class="scatter-4">IT IS</p>
+      <p class="scatter-5">IDENTITY.</p>
+    </div>
+  </section>
+
+  <section class="brands-section slanted">
+    <div class="marquee-wrapper">
+      <div class="marquee-track">
+        <div class="brand-list">
+          <span class="brand-name outline-hover" *ngFor="let brand of brands">{{ brand }}</span>
+        </div>
+        <div class="brand-list">
+          <span class="brand-name outline-hover" *ngFor="let brand of brands">{{ brand }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories-section">
+    <div class="asymmetric-grid">
+      
+      <div class="category-block block-left" routerLink="/catalog">
+        <div class="img-wrapper slit-mask">
+          <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?q=80&w=1000&auto=format&fit=crop" alt="Menswear">
+        </div>
+        <div class="hover-title">[01] MENSWEAR</div>
+      </div>
+
+      <div class="category-block block-right" routerLink="/catalog">
+        <div class="img-wrapper circle-mask">
+          <img src="https://images.unsplash.com/photo-1550614000-4b95d4edfa51?q=80&w=1000&auto=format&fit=crop" alt="Womenswear">
+        </div>
+        <div class="hover-title">[02] WOMENSWEAR</div>
+      </div>
+
+    </div>
+  </section>
+
+</div>

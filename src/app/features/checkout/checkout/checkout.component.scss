@@ -1,0 +1,249 @@
+/* =========================================
+   GLOBAL NEO-BRUTALIST SETTINGS
+   ========================================= */
+.abstract-theme {
+  background-color: #e5e5e5; /* Concrete base */
+  min-height: 100vh;
+  color: #000000;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  position: relative;
+  /* Clears the industrial header */
+  padding: 150px 4vw 10vh 4vw; 
+}
+
+/* Static Noise Overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+}
+
+/* Reusable Utility Classes */
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 2px #000000;
+}
+
+/* =========================================
+   1. MASSIVE TYPOGRAPHY
+   ========================================= */
+.checkout__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  /* Enter with a heavy snap */
+  animation: snapIn 0.3s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+@keyframes snapIn {
+  0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.title-wrapper {
+  margin-bottom: 8vh;
+}
+
+.page-title {
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  margin: 0;
+  text-shadow: 10px 10px 0px rgba(0, 0, 0, 0.15); /* Photocopy shadow */
+}
+
+.sub-title {
+  font-family: monospace;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  letter-spacing: 4px;
+  color: #000000;
+  margin-top: -10px;
+  background: #ffffff;
+  display: inline-block;
+  padding: 5px 15px;
+  border: 2px solid #000;
+}
+
+/* =========================================
+   2. TERMINAL BLOCKS & LAYOUT
+   ========================================= */
+.checkout__layout {
+  display: grid;
+  grid-template-columns: 1fr 450px; /* Wide side column for the ledger */
+  gap: 4vw;
+  align-items: start;
+}
+
+.checkout__main-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem; /* Massive spacing between steps */
+}
+
+.terminal-block {
+  background: #ffffff;
+  border: 3px solid #000000;
+  border-radius: 0; 
+  /* BRUTALIST SHADOW */
+  box-shadow: 12px 12px 0px 0px #000000;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 16px 16px 0px 0px #00fff9; /* Cyber cyan snap */
+  }
+}
+
+.section-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 3px solid #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f4f4f5;
+}
+
+.terminal-heading {
+  font-family: monospace;
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin: 0;
+  color: #000;
+}
+
+.pulse-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #ff00c1;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.2; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.lock-icon {
+  font-family: monospace;
+  font-weight: 800;
+  color: #15803d; /* Terminal green */
+}
+
+.form-wrapper {
+  padding: 2rem;
+}
+
+/* =========================================
+   3. COMMAND LINE PAYMENT INTERFACE
+   ========================================= */
+.payment-section {
+  padding-bottom: 2rem;
+}
+
+.payment-cli {
+  background: #050505;
+  color: #00fff9; /* Hacker cyan text */
+  margin: 2rem;
+  border: 2px solid #000;
+  box-shadow: 6px 6px 0px 0px rgba(0,0,0,0.3);
+  font-family: monospace;
+}
+
+.cli-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px dashed #333;
+  font-size: 0.8rem;
+  color: #71717a;
+}
+
+.cli-body {
+  padding: 2rem 1rem;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  
+  p { margin: 0; }
+  
+  .blink {
+    animation: blinker 1s linear infinite;
+  }
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}
+
+/* =========================================
+   4. EXECUTION BUTTON
+   ========================================= */
+.execute-btn {
+  width: calc(100% - 4rem);
+  margin: 0 2rem;
+  font-family: monospace;
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  padding: 1.5rem;
+  border: 3px solid #000000;
+  background: #ffffff;
+  color: #000000;
+  cursor: crosshair;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 8px 8px 0px 0px #000000;
+  text-align: center;
+
+  &:hover {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px 0px #000000; 
+    background: #ff00c1; /* Snaps to Magenta on execute */
+    color: #ffffff;
+    border-color: #ff00c1;
+  }
+}
+
+/* =========================================
+   5. SIDEBAR & MOBILE CHAOS
+   ========================================= */
+.checkout__sidebar {
+  position: sticky;
+  top: 130px; 
+}
+
+.summary-wrapper {
+  overflow: hidden; /* Ensures the ledger inside respects the block border */
+}
+
+@media (max-width: 992px) {
+  .abstract-theme { padding: 120px 1.5rem 5vh 1.5rem; }
+  
+  .checkout__layout {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .checkout__sidebar {
+    position: relative;
+    top: 0;
+    order: -1; /* Pulls summary to the top on mobile */
+  }
+
+  .execute-btn {
+    width: calc(100% - 2rem);
+    margin: 0 1rem;
+    font-size: 1rem;
+  }
+  
+  .payment-cli {
+    margin: 1rem;
+  }
+}

@@ -1,0 +1,67 @@
+<div class="noise-overlay"></div>
+
+<div class="orders-page abstract-theme">
+  <div class="orders-container">
+    
+    <div class="title-wrapper">
+      <h1 class="page-title outline-text">ARCHIVE</h1>
+      <h2 class="sub-title">[ DATABASE // TRANSACTIONS ]</h2>
+    </div>
+
+    <div class="orders-list" *ngIf="(orders$ | async) as orders">
+      
+      <div class="empty-state terminal-block" *ngIf="orders.length === 0">
+        <div class="glitch-icon">X</div>
+        <h2 class="terminal-text">ERR_NO_DATA_FOUND</h2>
+        <p class="terminal-sub">SYSTEM REQUIRES TRANSACTIONS TO POPULATE ARCHIVE.</p>
+        <button class="brutalist-btn primary" routerLink="/catalog">INITIALIZE SEQUENCE</button>
+      </div>
+
+      <div class="order-card terminal-block" *ngFor="let order of orders">
+        
+        <div class="decor-barcode"></div>
+
+        <div class="order-header">
+          <div class="header-info">
+            <span class="order-id">REF_ID: {{ order.id }}</span>
+            <span class="order-date">TS: {{ order.date | date:'mediumDate' | uppercase }}</span>
+          </div>
+          
+          <div class="header-status">
+            <span class="status-bracket">[</span>
+            <span class="status-raw" [class]="order.status.toLowerCase()">
+              STATUS: {{ order.status | uppercase }}
+            </span>
+            <span class="status-bracket">]</span>
+          </div>
+        </div>
+
+        <div class="order-items">
+          <div class="mini-item" *ngFor="let item of order.items.slice(0, 3)">
+            <div class="item-img img-mask">
+              <img [src]="item.product.image" alt="Product Image">
+            </div>
+            <div class="item-details">
+              <span class="item-name">{{ item.product.name | uppercase }}</span>
+              <span class="item-qty">Q: {{ item.quantity }} // T: ${{ (item.product.price * item.quantity) | number:'1.2-2' }}</span>
+            </div>
+          </div>
+          
+          <div class="more-items" *ngIf="order.items.length > 3">
+            <span class="outline-text">+{{ order.items.length - 3 }} FRAGMENTS</span>
+          </div>
+        </div>
+
+        <div class="order-footer">
+          <div class="order-total">
+            <span class="total-label">NET:</span>
+            <span class="total-value">${{ order.total | number:'1.2-2' }}</span>
+          </div>
+          <button class="brutalist-btn secondary">VIEW LOG</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

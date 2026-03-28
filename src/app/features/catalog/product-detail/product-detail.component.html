@@ -1,0 +1,125 @@
+<div class="noise-overlay"></div>
+
+<div class="detail-page abstract-theme">
+  <div class="detail-container">
+    
+    <div class="product-detail-layout">
+      
+      <div class="product-gallery-section terminal-block">
+        <div class="gallery-header">
+          <span class="view-id">CAM_01 // LIVE_FEED</span>
+          <span class="status-pulse"></span>
+        </div>
+
+        <p-galleria 
+          [value]="images" 
+          [(activeIndex)]="activeIndex"
+          [numVisible]="5"
+          [showThumbnails]="true"
+          [showIndicators]="false"
+          class="industrial-gallery">
+          
+          <ng-template pTemplate="item" let-item>
+            <div class="image-wrapper">
+              <div class="crosshair"></div>
+              <img [src]="item.itemImageSrc" [alt]="item.alt" class="main-gallery-image" />
+            </div>
+          </ng-template>
+
+          <ng-template pTemplate="thumbnail" let-item let-i="index">
+            <img 
+              [src]="item.thumbnailImageSrc" 
+              [alt]="item.alt" 
+              class="thumbnail-image" 
+              (click)="activeIndex = i" 
+            />
+          </ng-template>
+        </p-galleria>
+      </div>
+
+      <div class="product-info-section">
+        
+        <header class="info-header">
+          <div class="sector-tag">[ SECTOR: {{ product?.category | uppercase }} ]</div>
+          <h1 class="product-title outline-text">{{ product?.name | uppercase }}</h1>
+          <div class="price-plate">
+            <span class="currency">USD</span>
+            <span class="amount">{{ product?.price | number:'1.2-2' }}</span>
+          </div>
+        </header>
+
+        <div class="data-log-box terminal-block">
+          <div class="log-header">DATA_LOG_V1.04</div>
+          <p class="product-description">
+            > ENGINEERED FOR HIGH-STRESS ENVIRONMENTS. 
+            > REINFORCED CHASSIS. 
+            > CLIMATE_CONTROL_READY.
+            > {{ product?.description | uppercase }}
+          </p>
+        </div>
+
+        <div class="product-options">
+          
+          <div class="option-group">
+            <label class="sys-label">DIMENSION_SELECTOR</label>
+            <div class="size-selector">
+              <span class="size-box" 
+                    [class.active]="selectedSize === 'M'" 
+                    (click)="selectDimension('M')">M</span>
+              <span class="size-box" 
+                    [class.active]="selectedSize === 'L'" 
+                    (click)="selectDimension('L')">L</span>
+              <span class="size-box" 
+                    [class.active]="selectedSize === 'XL'" 
+                    (click)="selectDimension('XL')">XL</span>
+            </div>
+          </div>
+
+          <div class="option-group">
+            <label class="sys-label">CHROMA_VARIANT</label>
+            <div class="color-selector">
+              <span class="color-shard bg-black" 
+                    [class.active]="selectedColor === 'black'" 
+                    (click)="selectChroma('black')"></span>
+              <span class="color-shard bg-white" 
+                    [class.active]="selectedColor === 'white'" 
+                    (click)="selectChroma('white')"></span>
+            </div>
+          </div>
+
+          <div class="option-group quantity-row">
+            <label class="sys-label">UNIT_COUNT</label>
+            <p-inputNumber [(ngModel)]="quantity" [showButtons]="true" [min]="1" [max]="10"></p-inputNumber>
+          </div>
+
+        </div>
+
+        <div class="product-actions">
+          <div class="stock-status" [class.low-stock]="!product?.inStock">
+            {{ product?.inStock ? '[ STATUS: READY_FOR_DEPLOYMENT ]' : '[ STATUS: OUT_OF_RESERVE ]' }}
+          </div>
+          
+          <button 
+            class="brutalist-btn execute-btn"
+            [disabled]="!product?.inStock"
+            (click)="onAddToCart()">
+            <span class="btn-text">{{ product?.inStock ? 'DEPLOY_TO_CART' : 'NOTIFY_SYSTEM' }}</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+
+        <footer class="logistics-info terminal-block">
+          <div class="info-row">
+            <span class="label">TRANSIT_EST:</span>
+            <span class="value">GLOBAL_3-5_DAYS</span>
+          </div>
+          <div class="info-row">
+            <span class="label">RETURN_POLICY:</span>
+            <span class="value">30_DAY_VOID</span>
+          </div>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+</div>

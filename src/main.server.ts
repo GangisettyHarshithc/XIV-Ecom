@@ -1,8 +1,9 @@
-import { BootstrapContext, bootstrapApplication } from '@angular/platform-browser';
-import { App } from './app/app';
-import { config } from './app/app.config.server';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { appConfig } from './app/app.config';
 
-const bootstrap = (context: BootstrapContext) =>
-    bootstrapApplication(App, config, context);
-
+const bootstrap = () => bootstrapApplication(AppComponent, appConfig);
 export default bootstrap;
+
+// This file is not needed for client-side only applications
+// Delete this file if you're not using Server-Side Rendering (SSR)

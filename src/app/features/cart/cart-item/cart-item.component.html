@@ -1,0 +1,42 @@
+<div class="manifest-entry">
+  
+  <div class="entry-img img-mask">
+    <img [src]="item.product.image" [alt]="item.product.name" />
+  </div>
+
+  <div class="entry-data">
+    <h3 class="data-name">{{ item.product.name | uppercase }}</h3>
+    <div class="data-specs">
+      <span class="spec-block">
+        <span class="spec-label">SZ:</span>
+        <span class="spec-val">[{{ item.selectedSize }}]</span>
+      </span>
+      <span class="spec-block">
+        <span class="spec-label">CPU:</span>
+        <span class="spec-val">${{ item.product.price | number:'1.2-2' }}</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="entry-quantity">
+    <div class="mech-counter">
+      <button type="button" class="mech-btn" (click)="onDecrease()" aria-label="Decrease quantity">
+        <span class="btn-text">-</span>
+      </button>
+      
+      <span class="mech-value">{{ item.quantity < 10 ? '0' + item.quantity : item.quantity }}</span>
+      
+      <button type="button" class="mech-btn" (click)="onIncrease()" aria-label="Increase quantity">
+        <span class="btn-text">+</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="entry-actions">
+    <div class="net-total">
+      <span class="net-label">NET:</span>
+      <span class="net-value">${{ item.product.price * item.quantity | number:'1.2-2' }}</span>
+    </div>
+    </div>
+
+</div>

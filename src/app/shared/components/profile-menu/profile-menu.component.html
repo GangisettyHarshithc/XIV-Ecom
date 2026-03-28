@@ -1,0 +1,53 @@
+<div class="profile-menu">
+  
+  <button 
+    type="button"
+    class="profile-btn"
+    (click)="op.toggle($event)"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+      <circle cx="12" cy="7" r="4"></circle>
+    </svg>
+  </button>
+
+  <p-popover #op styleClass="premium-profile-panel">
+    <div class="profile-dropdown">
+      
+      <ng-container *ngIf="user; else loggedOutState">
+        <div class="user-info">
+          <span class="user-name">{{ user.firstName ? user.firstName + ' ' + user.lastName : 'Welcome Back' }}</span>
+          <span class="user-email">{{ user.email }}</span>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <div class="dropdown-menu-items">
+          <a routerLink="/profile" class="dropdown-item" (click)="op.hide()"><i class="pi pi-user"></i> My Account</a>
+          <a routerLink="/orders" class="dropdown-item" (click)="op.hide()"><i class="pi pi-shopping-bag"></i> Orders</a>
+          <a routerLink="/wishlist" class="dropdown-item" (click)="op.hide()"><i class="pi pi-heart"></i> Wishlist</a>
+          <a routerLink="/settings" class="dropdown-item" (click)="op.hide()"><i class="pi pi-cog"></i> Settings</a>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <div class="dropdown-menu-items">
+          <a class="dropdown-item logout" (click)="logout(op)"><i class="pi pi-sign-out"></i> Sign Out</a>
+        </div>
+      </ng-container>
+
+      <ng-template #loggedOutState>
+        <div class="guest-header">
+          <span class="guest-title">Welcome to XIV</span>
+          <span class="guest-subtitle">Sign in to view your orders.</span>
+        </div>
+        
+        <div class="dropdown-menu-items">
+          <a routerLink="/login" class="dropdown-item" (click)="op.hide()"><i class="pi pi-sign-in"></i> Log In</a>
+          <a routerLink="/signup" class="dropdown-item highlight-item" (click)="op.hide()"><i class="pi pi-user-plus"></i> Create Account</a>
+        </div>
+      </ng-template>
+
+    </div>
+  </p-popover>
+</div>

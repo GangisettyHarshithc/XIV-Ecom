@@ -1,0 +1,147 @@
+/* =========================================
+   SUCCESS_PAGE: LANDSCAPE ARCHIVE
+   ========================================= */
+.success-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e5e5e5;
+  padding: 150px 4vw 4vw 4vw; /* Extra top padding for your fixed header */
+  overflow: hidden;
+}
+
+.kinetic-landscape {
+  background: #000000;
+  color: #ffffff;
+  width: 100%;
+  max-width: 1000px; /* Increased width */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two-column split */
+  position: relative;
+  box-shadow: 25px 25px 0px 0px rgba(0, 0, 0, 0.15);
+  border: 1px solid #333;
+  animation: snapIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  
+  /* Height is now determined by content, making it much slimmer */
+}
+
+/* --- LEFT COLUMN: STATUS --- */
+.status-section {
+  padding: 4rem;
+  background: #111;
+  border-right: 2px solid #333; /* Vertical divider */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .scan-line {
+    position: absolute;
+    left: 0; width: 4px; height: 100%; /* Now scans horizontally */
+    background: #00fff9;
+    box-shadow: 0 0 15px #00fff9;
+    z-index: 5;
+    animation: scanHorizontal 3s infinite ease-in-out;
+  }
+
+  .status-code {
+    font-family: monospace;
+    color: #00fff9;
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+  }
+
+  .success-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin: 1rem 0;
+  }
+
+  .sys-note {
+    font-family: monospace;
+    color: #444;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+  }
+}
+
+/* --- RIGHT COLUMN: DATA --- */
+.data-section {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.order-id-plate {
+  background: #ffffff;
+  color: #000000;
+  padding: 1.5rem;
+  border: 2px solid #000;
+  text-align: center;
+  
+  .plate-label {
+    font-family: monospace;
+    font-size: 0.7rem;
+    font-weight: 900;
+    color: #888;
+    margin-bottom: 0.5rem;
+  }
+
+  .plate-value {
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    font-family: monospace;
+  }
+
+  .plate-barcode {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    background: repeating-linear-gradient(90deg, #000, #000 2px, transparent 2px, transparent 5px);
+    opacity: 0.1;
+  }
+}
+
+.brutalist-btn {
+  width: 100%;
+  padding: 1.25rem;
+  background: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: monospace;
+  font-weight: 900;
+
+  &:hover {
+    background: #ffffff;
+    color: #000;
+    .btn-arrow { transform: translateX(8px); }
+  }
+}
+
+@keyframes scanHorizontal {
+  0% { left: 0%; opacity: 0; }
+  50% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* Mobile: Stack them back when space is tight */
+@media (max-width: 850px) {
+  .kinetic-landscape { 
+    grid-template-columns: 1fr; 
+    max-width: 500px;
+  }
+  .status-section { border-right: none; border-bottom: 2px solid #333; padding: 3rem; }
+  .data-section { padding: 3rem; }
+}

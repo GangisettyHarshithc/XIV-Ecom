@@ -1,0 +1,101 @@
+<aside class="tactical-sidebar">
+  
+  <header class="sidebar-header">
+    <div class="sys-title">
+      <span class="blinking-cursor">_</span>
+      <h2>DATA_SORTING</h2>
+    </div>
+    <button class="btn-purge" (click)="onClearAll()">[ PURGE_FILTERS ]</button>
+  </header>
+
+  <section class="filter-group">
+    <h3 class="group-label">SECTOR</h3>
+    <ul class="sector-list">
+      <li (click)="selectCategory('Basics')" [class.active]="isSelected('categories', 'Basics')">
+        <span class="bracket">[</span> BASICS <span class="bracket">]</span>
+      </li>
+      <li (click)="selectCategory('Tops')" [class.active]="isSelected('categories', 'Tops')">
+        <span class="bracket">[</span> TOPS <span class="bracket">]</span>
+      </li>
+      <li (click)="selectCategory('Premium')" [class.active]="isSelected('categories', 'Premium')">
+        <span class="bracket">[</span> PREMIUM <span class="bracket">]</span>
+      </li>
+      <li (click)="selectCategory('Outerwear')" [class.active]="isSelected('categories', 'Outerwear')">
+        <span class="bracket">[</span> OUTERWEAR <span class="bracket">]</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="filter-group">
+    <h3 class="group-label">DIMENSIONS</h3>
+    <div class="dimension-grid">
+      <button *ngFor="let size of ['XS', 'S', 'M', 'L', 'XL', '2XL']" 
+              class="dimension-node" 
+              [class.active]="isSelected('sizes', size)"
+              (click)="toggleSize(size)">
+        {{ size }}
+      </button>
+    </div>
+  </section>
+
+  <section class="filter-group">
+    <h3 class="group-label">CHROMA_VARIANT</h3>
+    <div class="chroma-list">
+      <div class="chroma-node" (click)="toggleColor('Black')" [class.active]="isSelected('colors', 'Black')">
+        <span class="shard bg-black"></span><span class="label">BLK_00</span>
+      </div>
+      <div class="chroma-node" (click)="toggleColor('White')" [class.active]="isSelected('colors', 'White')">
+        <span class="shard bg-white"></span><span class="label">WHT_FF</span>
+      </div>
+      <div class="chroma-node" (click)="toggleColor('Gray')" [class.active]="isSelected('colors', 'Gray')">
+        <span class="shard bg-gray"></span><span class="label">GRY_88</span>
+      </div>
+      <div class="chroma-node" (click)="toggleColor('Blue')" [class.active]="isSelected('colors', 'Blue')">
+        <span class="shard bg-blue"></span><span class="label">BLU_0F</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="filter-group">
+    <h3 class="group-label">VALUE_RANGE (USD)</h3>
+    <div class="price-readout">
+      <span class="min-val">{{ priceRange[0] | number:'1.2-2' }}</span>
+      <span class="separator">>></span>
+      <span class="max-val">{{ priceRange[1] | number:'1.2-2' }}</span>
+    </div>
+    <div class="tactical-slider">
+      <p-slider 
+        [(ngModel)]="priceRange" 
+        [range]="true" 
+        [min]="0" 
+        [max]="300"
+        (onChange)="onFilterChange()" 
+        (onSlideEnd)="onFilterChange()">
+      </p-slider>
+    </div>
+  </section>
+
+  <section class="filter-group no-border">
+    <h3 class="group-label">STATUS</h3>
+    <div class="status-toggles">
+      
+      <label class="tactical-checkbox">
+        <input type="checkbox" 
+               [checked]="filters.availability.includes('in-stock')" 
+               (change)="toggleAvailability('in-stock')">
+        <div class="check-box"></div>
+        <span class="check-label">READY_FOR_DEPLOYMENT</span>
+      </label>
+
+      <label class="tactical-checkbox offline">
+        <input type="checkbox" 
+               [checked]="filters.availability.includes('out-of-stock')" 
+               (change)="toggleAvailability('out-of-stock')">
+        <div class="check-box"></div>
+        <span class="check-label">OUT_OF_RESERVE</span>
+      </label>
+
+    </div>
+  </section>
+
+</aside>

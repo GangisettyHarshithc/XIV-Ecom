@@ -1,0 +1,332 @@
+/* =========================================
+   PRODUCT DETAIL: INDUSTRIAL SPEC SHEET
+   ========================================= */
+.detail-page {
+  min-height: 100vh;
+  background-color: #e5e5e5; /* Concrete base */
+  
+  /* 94px (Header) + 30px (Breathing room) */
+  padding: 124px 4vw 60px 4vw; 
+  position: relative;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.detail-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.product-detail-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr; /* Image-heavy split */
+  gap: 5vw;
+  align-items: start;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+/* --- THE SURVEILLANCE GALLERY (Image Displayer) --- */
+.product-gallery-section {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 3px solid #000;
+  box-shadow: 15px 15px 0px 0px #000;
+  overflow: hidden;
+
+  .gallery-header {
+    background: #000;
+    color: #fff;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: monospace;
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    border-bottom: 3px solid #000;
+  }
+
+  .status-pulse {
+    width: 10px; height: 10px;
+    background: #ff0000;
+    border-radius: 50%;
+    animation: pulseBlink 0.8s infinite;
+    box-shadow: 0 0 8px #ff0000;
+  }
+
+  /* PrimeNG Galleria Overrides */
+  ::ng-deep .industrial-gallery {
+    .p-galleria-content { background: transparent; }
+
+    /* Main Image Viewport */
+    .p-galleria-item-wrapper {
+      position: relative;
+      background: #f0f0f0;
+      border-bottom: 3px solid #000;
+    }
+
+    .image-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/5; /* Fixed fashion geometry */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      
+      .main-gallery-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
+    /* Crosshair Overlay */
+    .crosshair {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 60px; height: 60px;
+      border: 1px solid rgba(0,0,0,0.2);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 10;
+      &::before { content: ''; position: absolute; top: 50%; left: -15px; width: 90px; height: 1px; background: rgba(0,0,0,0.2); }
+      &::after { content: ''; position: absolute; left: 50%; top: -15px; height: 90px; width: 1px; background: rgba(0,0,0,0.2); }
+    }
+
+    /* Thumbnail Tray */
+    .p-galleria-thumbnail-container {
+      background: #000000 !important;
+      padding: 1rem !important;
+    }
+
+    .p-galleria-thumbnail-items-container {
+      height: 100px !important;
+    }
+
+    .p-galleria-thumbnail-item {
+      opacity: 0.4;
+      transition: all 0.2s;
+      padding: 5px;
+
+      &.p-galleria-thumbnail-item-current {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+    }
+
+    .thumbnail-image {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border: 2px solid #fff;
+      display: block;
+    }
+
+    /* Nav Arrows */
+    .p-link { color: #fff !important; &:hover { color: #00fff9 !important; } }
+  }
+}
+
+/* --- PRODUCT INFORMATION SECTION --- */
+.product-info-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-header {
+  margin-bottom: 3rem;
+
+  .sector-tag {
+    font-family: monospace;
+    font-weight: 800;
+    color: #ff00c1;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 0.85;
+    margin: 0 0 1.5rem 0;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 2px #000;
+  }
+
+  .price-plate {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    background: #000;
+    color: #fff;
+    padding: 10px 25px;
+    font-family: monospace;
+    box-shadow: 6px 6px 0px 0px #ff00c1;
+
+    .currency { font-size: 0.8rem; color: #555; }
+    .amount { font-size: 2rem; font-weight: 900; }
+  }
+}
+
+/* Data Log Box */
+.data-log-box {
+  background: #ffffff;
+  border: 3px solid #000;
+  padding: 2.5rem 2rem;
+  margin-bottom: 3rem;
+  position: relative;
+  box-shadow: 10px 10px 0px 0px #000;
+
+  &::before {
+    content: 'DATA_LOG_V1.04';
+    position: absolute;
+    top: -14px; left: 20px;
+    background: #00fff9;
+    color: #000;
+    padding: 2px 10px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 900;
+    border: 2px solid #000;
+  }
+
+  .product-description {
+    font-family: monospace;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+  }
+}
+
+/* Selectors */
+.product-options {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-bottom: 4rem;
+
+  .sys-label {
+    display: block;
+    font-family: monospace;
+    font-weight: 900;
+    font-size: 0.8rem;
+    color: #888;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+  }
+}
+
+.size-selector {
+  display: flex;
+  gap: 12px;
+
+  .size-box {
+    width: 64px; height: 64px;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #000;
+    font-family: monospace;
+    font-weight: 900;
+    cursor: pointer;
+    background: #fff;
+    transition: all 0.2s;
+
+    &.active {
+      background: #000;
+      color: #fff;
+      box-shadow: 4px 4px 0px 0px #00fff9;
+      transform: translate(-2px, -2px);
+    }
+  }
+}
+
+.color-shard {
+  width: 45px; height: 45px;
+  border: 2px solid #000;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 15px;
+  
+  &.bg-black { background: #000; }
+  &.bg-white { background: #fff; }
+  
+  &.active {
+    outline: 3px solid #ff00c1;
+    outline-offset: 4px;
+  }
+}
+
+/* Actions */
+.product-actions {
+  .stock-status {
+    font-family: monospace;
+    font-weight: 900;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    color: #15803d;
+    &.low-stock { color: #ff0000; }
+  }
+
+  .execute-btn {
+    width: 100%;
+    padding: 1.75rem;
+    background: #000;
+    color: #fff;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: monospace;
+    font-weight: 900;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover:not(:disabled) {
+      background: #ff00c1;
+      transform: translate(-4px, -4px);
+      box-shadow: 8px 8px 0px 0px #000;
+    }
+
+    &:disabled { opacity: 0.5; cursor: not-allowed; }
+  }
+}
+
+/* Logistics Footer */
+.logistics-info {
+  margin-top: 4rem;
+  padding: 2rem;
+  background: #fff;
+  border: 2px solid #000;
+  box-shadow: 8px 8px 0px 0px #000;
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: monospace;
+    font-size: 0.85rem;
+    padding: 10px 0;
+    border-bottom: 1px dashed #ddd;
+    &:last-child { border: none; }
+    .label { color: #999; }
+    .value { font-weight: 900; }
+  }
+}
+
+@keyframes pulseBlink { 50% { opacity: 0.2; transform: scale(0.9); } }
+
+/* Mobile Chaos Control */
+@media (max-width: 768px) {
+  .detail-page { padding-top: 100px; }
+  .product-title { -webkit-text-stroke: 1px #000; }
+  .size-box { width: 50px; height: 50px; }
+}

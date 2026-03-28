@@ -1,0 +1,77 @@
+/* =========================================
+   PRODUCT GRID: TACTICAL MATRIX (3-COLUMN LOCK)
+   ========================================= */
+.tactical-grid-layout {
+  display: grid;
+  
+  /* THE LOCK: Forces exactly 3 equal columns */
+  grid-template-columns: repeat(3, 1fr);
+  
+  /* Vertical gap of 3rem, Horizontal gap of 2rem */
+  gap: 3rem 2rem; 
+  width: 100%;
+  
+  /* Forces all cards in a row to stretch to the same height */
+  align-items: stretch; 
+}
+
+/* --- SYSTEM EMPTY STATE --- */
+.sys-empty-state {
+  background: #ffffff;
+  border: 3px solid #000;
+  box-shadow: 10px 10px 0px 0px #000;
+  padding: 5rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+
+  .warning-icon {
+    font-size: 3rem;
+    color: #ff00c1; 
+    animation: alertBlink 1s infinite;
+  }
+
+  .error-code {
+    font-family: monospace;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 900;
+    color: #000;
+    margin: 0;
+    letter-spacing: 2px;
+  }
+
+  .error-detail {
+    font-family: monospace;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #555;
+    margin: 0;
+  }
+}
+
+@keyframes alertBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.2; transform: scale(0.95); }
+}
+
+/* --- RESPONSIVE PROTOCOLS --- */
+
+/* Medium Screens (Tablets/Small Laptops) */
+@media (max-width: 1100px) {
+  .tactical-grid-layout {
+    grid-template-columns: repeat(2, 1fr); /* Snaps to 2 per row */
+  }
+}
+
+/* Small Screens (Mobile) */
+@media (max-width: 768px) {
+  .tactical-grid-layout {
+    grid-template-columns: 1fr; /* Snaps to 1 per row */
+    gap: 2rem 1rem;
+  }
+  
+  .sys-empty-state { padding: 3rem 1rem; }
+}
